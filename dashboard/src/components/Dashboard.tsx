@@ -15,6 +15,7 @@ import InsightPanel from './InsightPanel';
 import StatCard from './StatCard';
 import SystemStatus from './SystemStatus';
 import TrendChart from './TrendChart';
+import Heatmap from './Heatmap';
 
 interface DashboardProps {
   userId: string;
@@ -160,6 +161,9 @@ export default function Dashboard({ userId }: DashboardProps) {
           <div>
             <InsightPanel insights={insights?.insights || []} />
           </div>
+        </div>
+        <div className="mt-8">
+          <Heatmap data={metrics?.history || []} />
         </div>
 
         {/* Event Feed + Breakdown */}

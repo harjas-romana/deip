@@ -1,0 +1,94 @@
+services:
+  # 1. Ingestion API (Web Service)
+  - type: web
+    name: deip-ingestion-api
+    runtime: node
+    region: oregon
+    rootDir: services/ingestion-api
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+  # 2. Dashboard API (Web Service)
+  - type: web
+    name: deip-dashboard-api
+    runtime: node
+    region: oregon
+    rootDir: services/dashboard-api
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+  # 3. Stream Processor (Background Worker)
+  - type: worker
+    name: deip-stream-processor
+    runtime: node
+    region: oregon
+    rootDir: services/stream-processor
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+  # 4. AI Service (Background Worker)
+  - type: worker
+    name: deip-ai-service
+    runtime: node
+    region: oregon
+    rootDir: services/ai-service
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+  # 5. Dashboard (Static Site)
+  - type: web
+    name: deip-dashboard
+    runtime: static
+    region: oregon
+    rootDir: dashboard
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+    envVars:
+      - key: VITE_INGESTION_URL
+        sync: false
+      - key: VITE_API_URL
+        sync: false
