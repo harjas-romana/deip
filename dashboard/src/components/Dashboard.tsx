@@ -1,21 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchMetrics, fetchInsights, fetchRecentEvents, fetchStreamInfo } from '../api';
+import StatCard from './StatCard';
+import TrendChart from './TrendChart';
+import EventFeed from './EventFeed';
+import InsightPanel from './InsightPanel';
+import SystemStatus from './SystemStatus';
+import Heatmap from './Heatmap';
 import { 
   Activity, 
-  Brain, 
   Clock, 
   Monitor, 
   MessageSquare, 
   BookOpen, 
-  Zap,
-  AlertTriangle 
+  Zap
 } from 'lucide-react';
-import EventFeed from './EventFeed';
-import InsightPanel from './InsightPanel';
-import StatCard from './StatCard';
-import SystemStatus from './SystemStatus';
-import TrendChart from './TrendChart';
-import Heatmap from './Heatmap';
+
+// ... rest of file stays the same
 
 interface DashboardProps {
   userId: string;

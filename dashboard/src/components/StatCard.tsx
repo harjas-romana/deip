@@ -7,13 +7,6 @@ interface StatCardProps {
 }
 
 export default function StatCard({ label, value, unit, icon, status }: StatCardProps) {
-  const statusColors = {
-    good: 'text-good',
-    warn: 'text-warn',
-    danger: 'text-danger',
-    neutral: 'text-silver',
-  };
-
   const borderColors = {
     good: 'border-good/20',
     warn: 'border-warn/20',

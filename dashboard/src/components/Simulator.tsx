@@ -6,12 +6,6 @@ import {
   Smartphone, Play, Square, Send, Loader2 
 } from 'lucide-react';
 
-declare global {
-  interface NodeJS {
-    Timeout: ReturnType<typeof setTimeout>;
-  }
-}
-
 const API_URL = import.meta.env.VITE_INGESTION_URL || 'http://localhost:3000';
 
 const EVENT_TYPES = [
@@ -34,9 +28,8 @@ interface EventLog {
 export default function Simulator({ userId }: { userId: string }) {
   const [logs, setLogs] = useState<EventLog[]>([]);
   const [isAutoRunning, setIsAutoRunning] = useState(false);
-  const [duration, setDuration] = useState(30);
   const [eventsPerMinute, setEventsPerMinute] = useState(5);
-  const autoIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const autoIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const queryClient = useQueryClient();
 
   const sendEvent = useMutation({
@@ -56,20 +49,19 @@ export default function Simulator({ userId }: { userId: string }) {
       setLogs(prev => [{
         id: crypto.randomUUID(),
         type: eventType,
-        status: 'sent',
+        status: 'sent' as const,
         timestamp: Date.now(),
         eventId: data.eventId,
       }, ...prev].slice(0, 50));
 
-      // Refresh dashboard data
       queryClient.invalidateQueries({ queryKey: ['metrics'] });
       queryClient.invalidateQueries({ queryKey: ['events'] });
     },
-    onError: (error, eventType) => {
+    onError: (_error, eventType) => {
       setLogs(prev => [{
         id: crypto.randomUUID(),
         type: eventType,
-        status: 'error',
+        status: 'error' as const,
         timestamp: Date.now(),
       }, ...prev].slice(0, 50));
     },
