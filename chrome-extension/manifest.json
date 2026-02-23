@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "DEIP Tracker",
+  "version": "1.0.0",
+  "description": "Tracks browser behavior for DEIP",
+  "permissions": ["tabs", "idle", "activeTab", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      width: 300px; 
+      background: #0a0a0a; 
+      color: #fafafa; 
+      font-family: 'SF Mono', monospace;
+      padding: 16px;
+    }
+    .header { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      margin-bottom: 16px; 
+      padding-bottom: 12px;
+      border-bottom: 1px solid #262626;
+    }
+    .dot { 
+      width: 8px; 
+      height: 8px; 
+      border-radius: 50%; 
+    }
+    .dot.active { background: #22c55e; }
+    .dot.inactive { background: #ef4444; }
+    .title { font-size: 14px; font-weight: bold; letter-spacing: 2px; }
+    .field { margin-bottom: 12px; }
+    .label { 
+      font-size: 10px; 
+      color: #737373; 
+      letter-spacing: 2px; 
+      margin-bottom: 4px; 
+    }
+    input { 
+      width: 100%; 
+      padding: 8px; 
+      background: #1a1a1a; 
+      border: 1px solid #262626; 
+      color: #fafafa; 
+      border-radius: 4px;
+      font-family: 'SF Mono', monospace;
+      font-size: 12px;
+    }
+    input:focus { outline: none; border-color: #404040; }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'SF Mono', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      letter-spacing: 2px;
+      margin-top: 8px;
+    }
+    .btn-primary { background: #fafafa; color: #0a0a0a; }
+    .btn-danger { background: #ef4444; color: white; }
+    .status { 
+      font-size: 10px; 
+      color: #737373; 
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #262626;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="dot" id="statusDot"></div>
+    <span class="title">DEIP</span>
+  </div>
+
+  <div class="field">
+    <div class="label">USER ID</div>
+    <input type="text" id="userId" placeholder="harjas">
+  </div>
+
+  <div class="field">
+    <div class="label">API URL</div>
+    <input type="text" id="apiUrl" placeholder="http://localhost:3000">
+  </div>
+
+  <button class="btn btn-primary" id="toggleBtn">START TRACKING</button>
+
+  <div class="status" id="status">Loading...</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-carbon: #0a0a0a;
+  --color-graphite: #141414;
+  --color-steel: #1a1a1a;
+  --color-smoke: #262626;
+  --color-ash: #404040;
+  --color-silver: #737373;
+  --color-fog: #a3a3a3;
+  --color-cloud: #d4d4d4;
+  --color-snow: #fafafa;
+  --color-pulse: #ffffff;
+  --color-danger: #ef4444;
+  --color-warn: #f59e0b;
+  --color-good: #22c55e;
+
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #262626 #0a0a0a;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #fafafa;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
