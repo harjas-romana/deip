@@ -20,7 +20,6 @@ services:
   - type: web
     name: deip-dashboard-api
     runtime: node
-    region: oregon
     rootDir: services/dashboard-api
     buildCommand: npm install && npm run build
     startCommand: npm start
@@ -40,7 +39,6 @@ services:
   - type: worker
     name: deip-stream-processor
     runtime: node
-    region: oregon
     rootDir: services/stream-processor
     buildCommand: npm install && npm run build
     startCommand: npm start
@@ -58,7 +56,6 @@ services:
   - type: worker
     name: deip-ai-service
     runtime: node
-    region: oregon
     rootDir: services/ai-service
     buildCommand: npm install && npm run build
     startCommand: npm start
@@ -78,7 +75,6 @@ services:
   - type: web
     name: deip-dashboard
     runtime: static
-    region: oregon
     rootDir: dashboard
     buildCommand: npm install && npm run build
     staticPublishPath: dist
