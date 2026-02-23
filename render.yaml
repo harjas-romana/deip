@@ -3,7 +3,6 @@ services:
   - type: web
     name: deip-ingestion-api
     runtime: node
-    region: oregon
     rootDir: services/ingestion-api
     buildCommand: npm install && npm run build
     startCommand: npm start
